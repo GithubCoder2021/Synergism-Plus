@@ -2277,7 +2277,7 @@ export const resourceGain = (dt: number): void => {
     multipliers();
     calculatetax();
     if (G['produceTotal'].gte(0.001)) {
-        let addcoin = (Decimal.min(G['produceTotal'].dividedBy(G['taxdivisor']), Decimal.pow(10, G['maxexponent'] - Decimal.log(G['taxdivisorcheck'], 10)))).times(dt/0.025)
+        const addcoin = (Decimal.min(G['produceTotal'].dividedBy(G['taxdivisor']), Decimal.pow(10, G['maxexponent'] - Decimal.log(G['taxdivisorcheck'], 10)))).times(dt/0.025)
         if(inMod("coingain"))G["totalCoinGain"]=addcoin.times(40)
         player.coins = player.coins.add(addcoin);
         player.coinsThisPrestige = player.coinsThisPrestige.add(addcoin);
@@ -3564,7 +3564,7 @@ window.addEventListener('load', () => {
     document.title = `Synergism v${version}`;
 
     const modAmt = Object.keys(mods).length
-    let table = DOMCacheGetOrSet("modTable")
+    const table = DOMCacheGetOrSet("modTable")
     for(let x=0;x<Math.ceil(modAmt/8);x++){
         let row = document.createElement("tr")
         for(let y=0;y<Math.min(modAmt-x*8,8);y++){

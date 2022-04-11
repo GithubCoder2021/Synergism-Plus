@@ -511,7 +511,9 @@ const upgradeToCurrency = (type: Upgrade) => {
 
 export const buyUpgrades = (type: Upgrade, pos: number, state?: boolean) => {
     const currency = type;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
     if (player[currency].gte(Decimal.pow(10, G['upgradeCosts'][pos])) && player.upgrades[pos] === 0) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
         player[currency] = player[currency].sub(Decimal.pow(10, G['upgradeCosts'][pos]))
         player.upgrades[pos] = 1;
         upgradeupdate(pos, state)

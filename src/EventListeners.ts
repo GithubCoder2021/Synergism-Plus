@@ -18,7 +18,7 @@ import { exportSynergism, updateSaveString, promocodes, importSynergism, resetGa
 import { resetHistoryTogglePerSecond } from "./History"
 import { Globals as G, Upgrade, modNames, modDescs, modIds } from './Variables';
 import { resetShopUpgrades, shopDescriptions, buyShopUpgrades, useConsumable, shopData, shopUpgradeTypes } from "./Shop"
-import { changeTabColor } from "./UpdateHTML"
+import {changeTabColor, revealStuff} from "./UpdateHTML"
 import { hepteractDescriptions, hepteractToOverfluxOrbDescription, tradeHepteractToOverfluxOrb, overfluxPowderDescription, overfluxPowderWarp } from "./Hepteracts"
 import { exitOffline, forcedDailyReset, timeWarp } from "./Calculate"
 import type { OneToFive, Player } from "./types/Synergism"
@@ -222,14 +222,15 @@ export const generateEventHandlers = () => {
 
 //Part 4.5: Mod Toggles
     for(let x=0;x<modNames.length;x++){
-        let tog = DOMCacheGetOrSet(`modtoggle${x+1}`)
+        const tog = DOMCacheGetOrSet(`modtoggle${x+1}`)
         tog.addEventListener('mouseover', () => {
             DOMCacheGetOrSet("modDesc").innerHTML = `<b>${modNames[x]}</b><br>${modDescs[x]}`
         })
         tog.addEventListener('click', () => {
-            let id = Number(tog.id.slice(9))
+            const id = Number(tog.id.slice(9))
             if(inMod(modIds[id-1]))player.mods.splice(player.mods.indexOf(modIds[id-1]),1)
             else player.mods.push(modIds[id-1])
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
             revealStuff()
         })
     }
