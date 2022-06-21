@@ -497,9 +497,9 @@ export const mods = [
     },
     {
         title: "NG^",
-        desc: "Makes some small nerf before prestige which make lots of timewall.",
-        author: "3^3=7",
-        id: "ngtetration"
+        desc: "Much, Much, Easier.",
+        author: "GithubCoder2021",
+        id: "ngexponentiation"
     },
 ]
 
